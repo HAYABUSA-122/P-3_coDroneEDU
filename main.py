@@ -1,13 +1,21 @@
+import start
+import emergency_stop
+import move_test
+
 from codrone_edu.drone import *
+
 # オブジェクト変数を生成
 drone=Drone()
-# ドローンとPCを接続する
-drone.pair()
-# 離陸する
-drone.takeoff()
-# 3秒ホバリング(空中で止まる)
-drone.hover(3)
-# 着陸する
-drone.land()
-# 接続を解除する
-drone.close()
+
+try:
+    start.start(drone) # ドローンを接続して離陸する
+
+    move_test.move_test(drone)  # ドローンを動かすテスト
+
+except KeyboardInterrupt:# プログラムの停止ボタンを押したらドローンを緊急着陸
+    emergency_stop.emergency_stop(drone)
+
+finally: # プログラム終了時に必ず実行する ドローン着陸　接続停止処理
+    print("プログラムを終了します")
+    drone.land()
+    drone.close()
