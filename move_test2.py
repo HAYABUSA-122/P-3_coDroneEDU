@@ -1,0 +1,18 @@
+def move_test(drone):
+
+    # 3秒ホバリング(空中で止まる)
+    drone.hover(3)
+
+    drone.move_forward(distance=100, units="cm", speed=1)
+    drone.hover(1)
+    drone.move_backward(distance=50, units="cm", speed=1)
+    drone.hover(1)
+    drone.move_left(distance=50, units="cm", speed=1)
+    drone.hover(1)
+    drone.move_right(distance=50, units="cm", speed=1)
+    drone.hover(1)
+
+    drone.turn_left(360)
+    drone.hover(1)
+    drone.turn_right(360)
+    drone.hover(1)
