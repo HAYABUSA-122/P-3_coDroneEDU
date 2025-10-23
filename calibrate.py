@@ -2,7 +2,6 @@ import configparser
 import keyboard
 import emergency_stop
 import time
-from codrone_edu.drone import *
 
 # iniファイルからトリム値を読み込む関数
 def load_trim_config():
@@ -40,9 +39,7 @@ def save_trim_config(roll,pitch):
         return None  # エラー時はNoneを返す
 
 # ホバーしながらリアルタイムでトリム値を変更する関数
-def set_trim_config():
-    # オブジェクト変数を生成
-    drone = Drone()
+def set_trim_config(drone):
 
     try:
 
@@ -68,7 +65,7 @@ def set_trim_config():
             # 現在時刻の取得
             current_time = time.time()
 
-            if current_time - last_keypress_time > 0.5:
+            if current_time - last_keypress_time > 0.1:
                 if keyboard.is_pressed('up'):      # 矢印↑を押すとピッチをプラス
                     pitch_trim += 1
                     trim_changed = True
@@ -88,7 +85,7 @@ def set_trim_config():
 
                 if trim_changed: # トリム値が変更されたらその値を表示
                     last_keypress_time = time.time()
-                    print(f"ロール(左右)の現在のトリム値{roll_trim}")
+                    print(f"\nロール(左右)の現在のトリム値{roll_trim}")
                     print(f"ピッチ(前後)の現在のトリム値{pitch_trim}")
 
 
@@ -99,6 +96,4 @@ def set_trim_config():
         print("プログラムを終了します")
         drone.land()
         drone.close()
-
-set_trim_config()
 
