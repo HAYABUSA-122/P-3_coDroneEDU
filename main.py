@@ -1,6 +1,7 @@
 import start
 import emergency_stop
 import move_test
+import move_test2
 import calibrate
 
 from codrone_edu.drone import *
@@ -15,7 +16,7 @@ if mode == "1":
     try:
         start.start(drone) # ドローンを接続して離陸する
 
-        move_test.move_test(drone)  # ドローンを動かすテスト
+        move_test2.move_test(drone)  # ドローンを動かすテスト
 
     except KeyboardInterrupt:# プログラムの停止ボタンを押したらドローンを緊急着陸
         emergency_stop.emergency_stop(drone)
