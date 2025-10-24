@@ -5,13 +5,13 @@ import time
 
 # iniファイルからトリム値を読み込む関数
 def load_trim_config():
-    config = configparser.ConfigParser()
-    config.read('config.ini')
+    config = configparser.ConfigParser() # オブジェクトの生成
+    config.read('config.ini') # config.iniファイルの全体読み込み
 
-    try:
+    try: # 特定の値を変数に代入
         roll_trim = int(config['TRIM']['roll_trim'])
         pitch_trim = int(config['TRIM']['pitch_trim'])
-    except (KeyError, ValueError):
+    except (KeyError, ValueError): # 読み込めなかった場合0 0を返す
         roll_trim = 0
         pitch_trim = 0
 
@@ -20,23 +20,25 @@ def load_trim_config():
 # iniファイルにトリム値を書き込む関数
 def save_trim_config(roll,pitch):
 
-    config = configparser.ConfigParser()
-    config.read('config.ini')
+    config = configparser.ConfigParser() # オブジェクトの生成
+    config.read('config.ini') # config.iniファイルの全体読み込み
 
-    config = configparser.ConfigParser()
+    # トリム値を文字列として設定
     config['TRIM'] = {
         'roll_trim': str(roll),
         'pitch_trim': str(pitch),
     }
 
-    # .iniファイルに書き込む
+    # .iniファイルに書き込む configオブジェクトをファイルに反映させるイメージ
     try:
-        with open('config.ini', 'w') as configfile:
-            config.write(configfile)
+        with open('config.ini', 'w') as configfile: # ファイルを開いて書き込みモードを起動　開いたファイルをconfigfile変数として設定
+            config.write(configfile)                # configオブジェクトに設定された値をconfig.iniに書き込み
         print(f"トリム値を {'config.ini'} に保存しました。")
-    except IOError as e:
+
+    except IOError as e: # 書き込めなかった場合
         print(f"ファイルの保存中にエラーが発生しました: {e}")
         return None  # エラー時はNoneを返す
+
 
 # ホバーしながらリアルタイムでトリム値を変更する関数
 def set_trim_config(drone):
@@ -46,10 +48,10 @@ def set_trim_config(drone):
         drone.pair()
 
         # トリム値の設定を呼び出して設定　離陸
-        roll_trim,pitch_trim = load_trim_config()
+        roll_trim,pitch_trim = load_trim_config() # トリム値の読み出し
         print(f"ロール(左右)の現在のトリム値{roll_trim}")
         print(f"ピッチ(前後)の現在のトリム値{pitch_trim}")
-        drone.set_trim(roll_trim, pitch_trim)
+        drone.set_trim(roll_trim, pitch_trim) # トリム値設定
         drone.takeoff()
 
 
@@ -65,7 +67,7 @@ def set_trim_config(drone):
             # 現在時刻の取得
             current_time = time.time()
 
-            if current_time - last_keypress_time > 0.1:
+            if current_time - last_keypress_time > 0.1: # 0.1秒ごとに入力を受け付けるように
                 if keyboard.is_pressed('up'):      # 矢印↑を押すとピッチをプラス
                     pitch_trim += 1
                     trim_changed = True
