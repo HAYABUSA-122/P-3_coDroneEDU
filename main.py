@@ -16,7 +16,7 @@ if mode == "1":
     try:
         start.start(drone) # ドローンを接続して離陸する
 
-        move_test2.move_test(drone)  # ドローンを動かすテスト
+        move_test.move_test(drone)  # ドローンを動かすテスト 左側は実行したい関数が入っているファイル名　右側は呼び出す関数名
 
     except KeyboardInterrupt:# プログラムの停止ボタンを押したらドローンを緊急着陸
         emergency_stop.emergency_stop(drone)

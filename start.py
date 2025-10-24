@@ -5,8 +5,8 @@ def start(drone):
         # ドローンとPCを接続する
         drone.pair()
         # トリム値を設定
-        roll_trim,pitch_trim = calibrate.load_trim_config()
-        drone.set_trim(roll_trim,pitch_trim)
+        roll_trim,pitch_trim = calibrate.load_trim_config() # config.iniファイルのトリム値を代入
+        drone.set_trim(roll_trim,pitch_trim) # トリム値を設定
         # 離陸する
         drone.takeoff()
         # 1秒ホバリング(空中で止まる)

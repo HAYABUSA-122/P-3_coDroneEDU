@@ -94,6 +94,9 @@ def set_trim_config(drone):
     except KeyboardInterrupt:# プログラムの停止ボタンを押したらドローンを緊急着陸
         emergency_stop.emergency_stop(drone)
 
+    except TimeoutError:
+        print("ドローンとの接続が失敗しました")
+
     finally:  # プログラム終了時に必ず実行する ドローン着陸　接続停止処理
         print("プログラムを終了します")
         drone.land()

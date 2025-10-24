@@ -1,6 +1,7 @@
 def move_test(drone):
 
     drone.hover(1)
+    drone.reset_move_values()  # 値をリセット
 
     drone.set_throttle(-20)    # 下の力を設定
     drone.move(1)              # 値を参照して動かす
