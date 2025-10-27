@@ -16,7 +16,7 @@ if mode == "1":
     try:
         start.start(drone) # ドローンを接続して離陸する
 
-        move_test2.move_test(drone)  # ドローンを動かすテスト, move_test1と2で書き換えて使用。1 = 田淵, 2 = 中山
+        move_test2.move_test(drone)  # ドローンを動かすテスト, move_test1と2と3で書き換えて使用。1 = 田淵, 2 = 中山, 3 = 菊池,
 
 
     except KeyboardInterrupt:# プログラムの停止ボタンを押したらドローンを緊急着陸
@@ -29,3 +29,4 @@ if mode == "1":
 
 if mode == "2":
     calibrate.set_trim_config(drone)
+
