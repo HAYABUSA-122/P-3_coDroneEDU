@@ -2,6 +2,7 @@ import start
 import emergency_stop
 import move_test
 import move_test2
+import move_test3
 import calibrate
 
 from codrone_edu.drone import *
