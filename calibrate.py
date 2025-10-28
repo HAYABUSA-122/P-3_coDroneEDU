@@ -49,6 +49,7 @@ def set_trim_config(drone):
 
         # トリム値の設定を呼び出して設定　離陸
         roll_trim,pitch_trim = load_trim_config() # トリム値の読み出し
+        print("↑:ピッチを増加 ↓:ピッチを減少 →:ロールを増加 ←:ロールを減少 q:終了")
         print(f"ロール(左右)の現在のトリム値{roll_trim}")
         print(f"ピッチ(前後)の現在のトリム値{pitch_trim}")
         drone.set_trim(roll_trim, pitch_trim) # トリム値設定
@@ -65,7 +66,7 @@ def set_trim_config(drone):
             # チェンジのチェック
             trim_changed = False
             # 現在時刻の取得
-            current_time = time.time()
+            current_time = int(time.time())
 
             if current_time - last_keypress_time > 0.1: # 0.1秒ごとに入力を受け付けるように
                 if keyboard.is_pressed('up'):      # 矢印↑を押すとピッチをプラス
@@ -93,6 +94,9 @@ def set_trim_config(drone):
 
     except KeyboardInterrupt:# プログラムの停止ボタンを押したらドローンを緊急着陸
         emergency_stop.emergency_stop(drone)
+
+    except TimeoutError:
+        print("ドローンとの接続が失敗しました")
 
     finally:  # プログラム終了時に必ず実行する ドローン着陸　接続停止処理
         print("プログラムを終了します")
