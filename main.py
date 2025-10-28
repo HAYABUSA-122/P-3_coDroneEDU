@@ -22,23 +22,23 @@ if mode == "5":
 else:
     try:
         start.start(drone) # ドローンを接続して離陸する
-        if mode == 1:
+        if mode == "1":
             move_test.move_test(drone)  # ドローンを動かすテスト
 
-        if mode == 2:
+        if mode == "2":
             move_test2.move_test(drone)
 
-        if mode == 3:
+        if mode == "3":
             move_test3.move_test(drone)
-        if mode == 4:
+        if mode == "4":
             nakamura.move_test(drone)
 
 
     except KeyboardInterrupt:# プログラムの停止ボタンを押したらドローンを緊急着陸
         emergency_stop.emergency_stop(drone)
-
-    print("プログラムを終了します")
-    drone.land()
-    drone.close()
+    finally:
+        print("プログラムを終了します")
+        drone.land()
+        drone.close()
 
 
