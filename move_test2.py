@@ -1,6 +1,3 @@
-from main import drone
-
-
 def move_test(drone):
 
     # 3秒ホバリング(空中で止まる)
