@@ -1,3 +1,4 @@
+import move_test3
 import start
 import emergency_stop
 import move_test
@@ -10,22 +11,31 @@ from codrone_edu.drone import *
 drone=Drone()
 
 print("モードを選択してください")
+
+print("1:move_test 2:move_test2 3:move_test3 5:set_trim")
 mode = input()
 
-if mode == "1":
+if mode == "5":
+    calibrate.set_trim_config(drone)
+
+else:
     try:
         start.start(drone) # ドローンを接続して離陸する
+        if mode == 1:
+            move_test.move_test(drone)  # ドローンを動かすテスト
 
-        move_test2.move_test(drone)  # ドローンを動かすテスト, move_test1と2で書き換えて使用。1 = 田淵, 2 = 中山
+        if mode == 2:
+            move_test2.move_test(drone)
+
+        if mode == 3:
+            move_test3.move_test(drone)
 
 
     except KeyboardInterrupt:# プログラムの停止ボタンを押したらドローンを緊急着陸
         emergency_stop.emergency_stop(drone)
 
-    finally: # プログラム終了時に必ず実行する ドローン着陸　接続停止処理
-        print("プログラムを終了します")
-        drone.land()
-        drone.close()
+    print("プログラムを終了します")
+    drone.land()
+    drone.close()
 
-if mode == "2":
-    calibrate.set_trim_config(drone)
+
