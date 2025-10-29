@@ -1,12 +1,16 @@
-def move_test(drone):
+from codrone_edu.drone import Drone
 
-    drone.hover(3)
+PIPE_SHORT = 1  #0.2
+PIPE_RONG = 1  #1.524
 
-    drone.move_forward(distance=100, units="cm", speed=1)
+def move_test(drone: Drone):
+
     drone.hover(1)
-    drone.move_left(distance=100, units="cm", speed=1)
+    drone.move_distance(PIPE_RONG, 0, 0,1)   # x = 3.5
     drone.hover(1)
-    drone.move_backward(distance=100, units="cm", speed=1)
+    drone.move_distance(0, 0, -0.3, 0.5)
     drone.hover(1)
-    drone.move_right(distance=100, units="cm", speed=1)
+    drone.move_distance(PIPE_RONG, 0, 0, 0.2) # x = 3.048
     drone.hover(1)
+
+
