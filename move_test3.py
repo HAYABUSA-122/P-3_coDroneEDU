@@ -1,7 +1,8 @@
 from codrone_edu.drone import Drone
 
-PIPE_SHORT = 1  #0.2
-PIPE_RONG = 1  #1.524
+PIPE_SHORT = 1  #0.2 (200ミリ)
+PIPE_RONG = 1  #1.524 (1524ミリ)
+
 
 def move_test(drone: Drone):
 
