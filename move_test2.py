@@ -73,9 +73,9 @@ def move_test(drone: Drone):
 #     # drone.move(2)
 
 
-    drone.set_roll(-30)
-    drone.move(0.78)
-    drone.reset_move_values()
+    # drone.set_roll(-30)
+    # drone.move(0.78)
+    # drone.reset_move_values()
     drone.hover(1)
     drone.move_forward(distance=82, units="cm",speed = 1)
     drone.hover(1)

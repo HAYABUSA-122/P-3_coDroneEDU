@@ -1,15 +1,10 @@
 from codrone_edu.drone import Drone
+import time
 
 def move_test(drone: Drone):
+    drone.takeoff()
+    drone.hover(1)
+    print("現在の高度：", drone.get_height(unit="cm"))
 
-    drone.hover(3)
-    drone.reset_move_values()
-
-    drone.set_pitch(20)
-    drone.move(2)
-    drone.reset_move_values()
-
-    drone.move()
-
-    # drone.set_pitch(-100)
-    # drone.move(2)
+    drone.hover(1)
+    print("現在の高度",drone.get_height(unit="cm"))
